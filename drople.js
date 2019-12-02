@@ -12,13 +12,29 @@
 
     xhr.open('PUT', 'http://localhost:1337/upload-portfile', true);
 
-    xhr.onprogress = function () {
+    xhr.upload.addEventListener("loadstart", progress, false);
+    xhr.upload.addEventListener("progress", progress, false);
+    xhr.upload.addEventListener("load", progress, false);
+    xhr.upload.addEventListener("error", error, false);
 
-    };
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = this.responseText;
 
-    xhr.onload = function () {
+        console.log(response)
+      } else if (this.status == 500) {
+        console.log('Server Error')
+      }
 
-    };
+    }
 
     xhr.send(fd);
+  }
+
+  function progress(e) {
+    console.log(Math.round(e.loaded / e.total * 100))
+  }
+
+  function error(e) {
+    console.log('Oops! something went wrong');
   }
