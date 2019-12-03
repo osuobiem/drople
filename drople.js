@@ -1,33 +1,55 @@
+/**
+ * Include drople.css
+ * *************************************************
+ */
+{
+  style = document.createElement('link')
+  style.rel = 'stylesheet'
+  style.href = 'drople.css'
+
+  document.head.appendChild(style)
+}
+/***************************************************/
+
 // Drople root div
 let drople = document.getElementById('drople')
 let first = true;
 
+// Upload Mode
 let mode = drople.getAttribute('mode')
+
+// Server Upload URL
 let url = drople.getAttribute('url')
 
-let input = document.createElement('input')
-input.id = 'file'
-input.type = 'file'
-input.hidden = true;
-drople.appendChild(input)
+/**
+ * Create File Input Element
+ ***************************************************
+ */
+{
+  let input = document.createElement('input')
+  input.id = 'file'
+  input.type = 'file'
+  input.hidden = true;
+  drople.appendChild(input)
 
-if (mode === 'single') {
-  input.addEventListener('change', e => {
-    upload(e.target.files[0]);
-  })
-} else {
-  input.multiple = true
-  input.addEventListener('change', e => {
-    [...e.target.files].forEach(f => {
-      upload(f);
+  if (mode === 'single') {
+    input.addEventListener('change', e => {
+      upload(e.target.files[0]);
     })
+  } else {
+    input.multiple = true
+    input.addEventListener('change', e => {
+      [...e.target.files].forEach(f => {
+        upload(f);
+      })
+    })
+  }
+
+  drople.addEventListener('click', () => {
+    input.click()
   })
 }
-
-drople.addEventListener('click', () => {
-  input.click()
-})
-
+/***************************************************/
 
 /**
  * Manipulate image display to fit screen size
@@ -118,7 +140,7 @@ function drop(e) {
   e.target.classList.remove('drop-op')
   files = e.dataTransfer.files;
 
-  ([...files]).forEach(upload)
+  mode === 'single' ? upload(files[0]) : [...files].forEach(upload)
 }
 
 function upload(file, drop = false) {
