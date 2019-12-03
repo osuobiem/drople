@@ -23,9 +23,6 @@
 
 /* Image Display */
 .drople-img {
-  background-position: center;
-  background-size: cover;
-  text-align: right;
   overflow: hidden;
 }
 
