@@ -12,7 +12,16 @@
 .drople-img {
   background-position: center;
   background-size: cover;
-  height: 210px;
+  text-align: right;
+}
+
+.status-s {
+  color: #2af3328a;
+  font-size: 2em;
+  padding: 1px 3px;
+  text-align: center;
+  border-radius: 50px;
+  border: solid 5px #2af3328a;
 }
 
 [class*="col-"] {
