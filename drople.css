@@ -16,12 +16,21 @@
 }
 
 .status-s {
-  color: #2af3328a;
+  color: #2af331a1;
   font-size: 2em;
-  padding: 1px 3px;
+  padding: 2px 3px;
   text-align: center;
   border-radius: 50px;
-  border: solid 5px #2af3328a;
+  border: solid 5px #2af331a1;
+}
+
+.status-e {
+  color: #f33131c4;
+  font-size: 2em;
+  padding: 1px 9px;
+  text-align: center;
+  border-radius: 50px;
+  border: solid 5px #f33131c4;
 }
 
 [class*="col-"] {
