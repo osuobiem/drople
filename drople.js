@@ -1,41 +1,61 @@
+// Drople root div
 let drople = document.getElementById('drople')
 let first = true;
 
-//  Manipulate Responsiveness
-function manipResp() {
-  let img = document.getElementsByClassName('drople-img')
-  for (let i = 0; i < img.length; i++) {
-    if (screen.width >= 768) {
-      if (drople.offsetWidth <= screen.width / 2 && drople.offsetWidth > screen.width / 3) {
-        img[i].setAttribute('class', 'drople-img d-col-3')
-      } else if (drople.offsetWidth > screen.width / 2 && drople.offsetWidth <= screen.width) {
-        img[i].setAttribute('class', 'drople-img d-col-2')
-      } else if (drople.offsetWidth < screen.width / 2 && drople.offsetWidth >= screen.width / 5) {
-        img[i].setAttribute('class', 'drople-img d-col-4')
-      } else if (drople.offsetWidth < screen.width / 5) {
-        img[i].setAttribute('class', 'drople-img d-col-12')
-      }
-    } else {
-      if (drople.offsetWidth <= screen.width / 2) {
-        img[i].setAttribute('class', 'drople-img d-col-12')
-      } else {
-        img[i].setAttribute('class', 'drople-img d-col-4')
-      }
-    }
+let input = document.createElement('input')
+input.id = 'file'
+input.type = 'file'
+input.hidden = true;
+input.addEventListener('change', upload, false)
+drople.appendChild(input)
 
-    w = img[i].offsetWidth;
-    img[i].setAttribute('style', 'height: ' + w + 'px; ' + img[i].getAttribute('style'))
+drople.addEventListener('click', () => {
+  input.click()
+})
+
+/**
+ * Manipulate image display to fit screen size
+ * and maintain responsiveness
+ * 
+ * @param {HTML element} img 
+ */
+function manip(img) {
+  if (screen.width >= 768) {
+    if (drople.offsetWidth <= screen.width / 2 && drople.offsetWidth > screen.width / 3) {
+      img.setAttribute('class', 'drople-img d-col-3')
+    } else if (drople.offsetWidth > screen.width / 2 && drople.offsetWidth <= screen.width) {
+      img.setAttribute('class', 'drople-img d-col-2')
+    } else if (drople.offsetWidth < screen.width / 2 && drople.offsetWidth >= screen.width / 5) {
+      img.setAttribute('class', 'drople-img d-col-4')
+    } else if (drople.offsetWidth < screen.width / 5) {
+      img.setAttribute('class', 'drople-img d-col-12')
+    }
+  } else {
+    if (drople.offsetWidth <= screen.width / 2) {
+      img.setAttribute('class', 'drople-img d-col-12')
+    } else {
+      img.setAttribute('class', 'drople-img d-col-4')
+    }
   }
+
+  w = img.offsetWidth;
+  img.setAttribute('style', 'height: ' + w + 'px; ' + img.getAttribute('style'))
 }
 
-// Read and display file
-function readFile(input) {
+/**
+ * Render image file
+ * If file is not an image a placeholder will be
+ * rendered instead
+ * 
+ * @param {FileObject} file 
+ */
+function render(file) {
   let img_parent = document.createElement('div')
   let new_img = document.createElement('img')
 
   let reader = new FileReader()
-  reader.readAsDataURL(input)
-  reader.onloadend = function () {
+  reader.readAsDataURL(file)
+  reader.onload = () => {
     new_img.src = reader.result
   }
 
@@ -47,45 +67,46 @@ function readFile(input) {
     first = false
   }
   drople.appendChild(img_parent)
-  manipResp()
+  manip(img_parent)
 }
 
-;
-['dragenter', 'dragover'].forEach(e => {
-  drople.addEventListener(e, preventDefaults, false)
-})
+/**
+ * Drag and drop even listeners
+ ****************************************************/
+{
+  ;
+  ['dragenter', 'dragover'].forEach(e => {
+    drople.addEventListener(e, preventDefaults, false)
+  })
 
-;
-['dragleave', 'drop'].forEach(e => {
-  drople.addEventListener(e, preventDefaults, false)
-})
+  ;
+  ['dragleave', 'drop'].forEach(e => {
+    drople.addEventListener(e, preventDefaults, false)
+  })
 
-drople.addEventListener('drop', drop, false)
+  drople.addEventListener('drop', drop, false)
 
+  function preventDefaults(e) {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+}
+// **************************************************/
+
+/**
+ * Handle ondrop event
+ * 
+ * @param {event} e 
+ */
 function drop(e) {
   e.target.classList.remove('drop-op')
   files = e.dataTransfer.files;
-  //console.log([...files])
+
   ([...files]).forEach(upload)
 }
 
-function preventDefaults(e) {
-  e.preventDefault()
-  e.stopPropagation()
-}
-
-
-// File upload 
-
-document.querySelector('#file').addEventListener('change', e => {
-  upload(e.target)
-})
-
-
-
-function upload(e) {
-  //let file = e.files[0];
-  readFile(e);
+function upload(file, drop = false) {
+  render(file);
 
   // let fd = new FormData();
   // fd.append('file', file);
