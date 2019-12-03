@@ -1,4 +1,4 @@
-.drople {
+#drople {
   background: #f9f9f9;
   margin: 1%;
   border: dashed;
@@ -32,25 +32,12 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
-
-  /* For tablets: */
-  [class*="col-"] {
-    width: 20%;
-  }
-
-  .drople-img {
-    background-position: center;
-    background-size: cover;
-    height: 135px;
-  }
-}
 
 @media only screen and (max-width: 600px) {
 
   /* For mobile phones: */
   [class*="col-"] {
-    width: 40%;
+    width: 40% !important;
   }
 
   .drople-img {
