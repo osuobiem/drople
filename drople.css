@@ -1,8 +1,8 @@
 /* Drople Root */
 #drople {
-  background: #f9f9f9;
+  background: #d4cece45;
   margin: 1%;
-  border: dashed;
+  border: dashed 1.2px;
   border-radius: 5px;
   height: fit-content;
   display: flex;
@@ -10,11 +10,27 @@
   justify-content: center;
 }
 
+#drople:hover {
+  opacity: .8;
+}
+
+#drop-msg {
+  z-index: 999999;
+  font-weight: 600;
+  color: #313131;
+  padding: 5% 0;
+}
+
 /* Image Display */
 .drople-img {
   background-position: center;
   background-size: cover;
   text-align: right;
+  overflow: hidden;
+}
+
+.drople-img>img {
+  width: 100%;
 }
 
 /* Success Status */
