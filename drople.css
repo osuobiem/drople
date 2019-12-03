@@ -12,12 +12,52 @@
 .drople-img {
   background-position: center;
   background-size: cover;
-  height: 200px;
+  height: 210px;
 }
 
 [class*="col-"] {
-  padding: 10px;
+  padding: 5px;
   border: 1px solid #ffffff;
+  margin: 1%;
+}
+
+@media only screen and (max-width: 1024px) {
+
+  /* For iPad and mini laptop: */
+
+  .drople-img {
+    background-position: center;
+    background-size: cover;
+    height: 170px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  /* For tablets: */
+  [class*="col-"] {
+    width: 20%;
+  }
+
+  .drople-img {
+    background-position: center;
+    background-size: cover;
+    height: 135px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  /* For mobile phones: */
+  [class*="col-"] {
+    width: 40%;
+  }
+
+  .drople-img {
+    background-position: center;
+    background-size: cover;
+    height: 120px;
+  }
 }
 
 /* For desktop: */
@@ -67,18 +107,4 @@
 
 .col-12 {
   width: 100%;
-}
-
-@media only screen and (max-width: 768px) {
-
-  /* For mobile phones: */
-  [class*="col-"] {
-    width: 40%;
-  }
-
-  .drople-img {
-    background-position: center;
-    background-size: cover;
-    height: 120px;
-  }
 }
