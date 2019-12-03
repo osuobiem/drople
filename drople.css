@@ -21,77 +21,50 @@
   margin: 1%;
 }
 
-@media only screen and (max-width: 1024px) {
-
-  /* For iPad and mini laptop: */
-
-  .drople-img {
-    background-position: center;
-    background-size: cover;
-    height: 170px;
-  }
-}
-
-
-@media only screen and (max-width: 600px) {
-
-  /* For mobile phones: */
-  [class*="col-"] {
-    width: 40% !important;
-  }
-
-  .drople-img {
-    background-position: center;
-    background-size: cover;
-    height: 120px;
-  }
-}
-
-/* For desktop: */
-.col-1 {
+.d-col-1 {
   width: 8.33%;
 }
 
-.col-2 {
+.d-col-2 {
   width: 16.66%;
 }
 
-.col-3 {
+.d-col-3 {
   width: 25%;
 }
 
-.col-4 {
+.d-col-4 {
   width: 33.33%;
 }
 
-.col-5 {
+.d-col-5 {
   width: 41.66%;
 }
 
-.col-6 {
+.d-col-6 {
   width: 50%;
 }
 
-.col-7 {
+.d-col-7 {
   width: 58.33%;
 }
 
-.col-8 {
+.d-col-8 {
   width: 66.66%;
 }
 
-.col-9 {
+.d-col-9 {
   width: 75%;
 }
 
-.col-10 {
+.d-col-10 {
   width: 83.33%;
 }
 
-.col-11 {
+.d-col-11 {
   width: 91.66%;
 }
 
-.col-12 {
+.d-col-12 {
   width: 100%;
 }

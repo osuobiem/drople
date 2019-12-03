@@ -5,19 +5,19 @@ let dro = document.getElementById('drople')
 for (let i = 0; i < img.length; i++) {
   if (screen.width >= 768) {
     if (dro.offsetWidth <= screen.width / 2 && dro.offsetWidth > screen.width / 3) {
-      img[i].setAttribute('class', 'drople-img col-3')
+      img[i].setAttribute('class', 'drople-img d-col-3')
     } else if (dro.offsetWidth > screen.width / 2 && dro.offsetWidth <= screen.width) {
-      img[i].setAttribute('class', 'drople-img col-2')
+      img[i].setAttribute('class', 'drople-img d-col-2')
     } else if (dro.offsetWidth < screen.width / 2 && dro.offsetWidth >= screen.width / 5) {
-      img[i].setAttribute('class', 'drople-img col-4')
+      img[i].setAttribute('class', 'drople-img d-col-4')
     } else if (dro.offsetWidth < screen.width / 5) {
-      img[i].setAttribute('class', 'drople-img col-12')
+      img[i].setAttribute('class', 'drople-img d-col-12')
     }
   } else {
     if (dro.offsetWidth <= screen.width / 2) {
-      img[i].setAttribute('class', 'drople-img col-12')
+      img[i].setAttribute('class', 'drople-img d-col-12')
     } else {
-      img[i].setAttribute('class', 'drople-img col-6')
+      img[i].setAttribute('class', 'drople-img d-col-4')
     }
   }
 
