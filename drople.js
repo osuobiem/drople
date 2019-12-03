@@ -2,16 +2,32 @@
 let drople = document.getElementById('drople')
 let first = true;
 
+let mode = drople.getAttribute('mode')
+let url = drople.getAttribute('url')
+
 let input = document.createElement('input')
 input.id = 'file'
 input.type = 'file'
 input.hidden = true;
-input.addEventListener('change', upload, false)
 drople.appendChild(input)
+
+if (mode === 'single') {
+  input.addEventListener('change', e => {
+    upload(e.target.files[0]);
+  })
+} else {
+  input.multiple = true
+  input.addEventListener('change', e => {
+    [...e.target.files].forEach(f => {
+      upload(f);
+    })
+  })
+}
 
 drople.addEventListener('click', () => {
   input.click()
 })
+
 
 /**
  * Manipulate image display to fit screen size

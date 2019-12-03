@@ -42,6 +42,8 @@
   text-align: center;
   border-radius: 50px;
   border: solid 5px #2af331a1;
+  position: absolute;
+  z-index: 999999;
 }
 
 /* Error Status */
@@ -52,16 +54,19 @@
   text-align: center;
   border-radius: 50px;
   border: solid 5px #f33131c4;
+  position: absolute;
+  z-index: 999999;
 }
 
 /* Error Message */
 .e-message {
-  padding: 10px;
+  padding: 7px;
   background: #ffffff82;
   border-radius: 5px;
   margin-top: 5%;
   text-align: center;
   font-size: 12px;
+  position: absolute;
 }
 
 /* Upload Progress Holder */
