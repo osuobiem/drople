@@ -1,4 +1,4 @@
-let dro = document.getElementById('drople')
+let drople = document.getElementById('drople')
 let first = true;
 
 //  Manipulate Responsiveness
@@ -6,17 +6,17 @@ function manipResp() {
   let img = document.getElementsByClassName('drople-img')
   for (let i = 0; i < img.length; i++) {
     if (screen.width >= 768) {
-      if (dro.offsetWidth <= screen.width / 2 && dro.offsetWidth > screen.width / 3) {
+      if (drople.offsetWidth <= screen.width / 2 && drople.offsetWidth > screen.width / 3) {
         img[i].setAttribute('class', 'drople-img d-col-3')
-      } else if (dro.offsetWidth > screen.width / 2 && dro.offsetWidth <= screen.width) {
+      } else if (drople.offsetWidth > screen.width / 2 && drople.offsetWidth <= screen.width) {
         img[i].setAttribute('class', 'drople-img d-col-2')
-      } else if (dro.offsetWidth < screen.width / 2 && dro.offsetWidth >= screen.width / 5) {
+      } else if (drople.offsetWidth < screen.width / 2 && drople.offsetWidth >= screen.width / 5) {
         img[i].setAttribute('class', 'drople-img d-col-4')
-      } else if (dro.offsetWidth < screen.width / 5) {
+      } else if (drople.offsetWidth < screen.width / 5) {
         img[i].setAttribute('class', 'drople-img d-col-12')
       }
     } else {
-      if (dro.offsetWidth <= screen.width / 2) {
+      if (drople.offsetWidth <= screen.width / 2) {
         img[i].setAttribute('class', 'drople-img d-col-12')
       } else {
         img[i].setAttribute('class', 'drople-img d-col-4')
@@ -30,22 +30,50 @@ function manipResp() {
 
 // Read and display file
 function readFile(input) {
-  let url = window.URL.createObjectURL(input.files[0]);
   let img_parent = document.createElement('div')
   let new_img = document.createElement('img')
 
-  img_parent.setAttribute('class', 'drople-img')
-  new_img.setAttribute('src', url)
+  let reader = new FileReader()
+  reader.readAsDataURL(input)
+  reader.onloadend = function () {
+    new_img.src = reader.result
+  }
 
+  img_parent.classList.add('drople-img')
   img_parent.appendChild(new_img)
 
   if (first) {
-    dro.innerHTML = ''
+    drople.innerHTML = ''
     first = false
   }
-  dro.appendChild(img_parent)
+  drople.appendChild(img_parent)
   manipResp()
 }
+
+;
+['dragenter', 'dragover'].forEach(e => {
+  drople.addEventListener(e, preventDefaults, false)
+})
+
+;
+['dragleave', 'drop'].forEach(e => {
+  drople.addEventListener(e, preventDefaults, false)
+})
+
+drople.addEventListener('drop', drop, false)
+
+function drop(e) {
+  e.target.classList.remove('drop-op')
+  files = e.dataTransfer.files;
+  //console.log([...files])
+  ([...files]).forEach(upload)
+}
+
+function preventDefaults(e) {
+  e.preventDefault()
+  e.stopPropagation()
+}
+
 
 // File upload 
 
