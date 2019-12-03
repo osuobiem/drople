@@ -38,24 +38,26 @@
 .status-s {
   color: #2af331a1;
   font-size: 2em;
-  padding: 2px 4px;
+  padding: 1px 6px;
   text-align: center;
   border-radius: 50px;
   border: solid 5px #2af331a1;
   position: absolute;
   z-index: 999999;
+  background-color: #a2a2a236;
 }
 
 /* Error Status */
 .status-e {
   color: #f33131c4;
   font-size: 2em;
-  padding: 1px 9px;
+  padding: 1px 12px;
   text-align: center;
   border-radius: 50px;
   border: solid 5px #f33131c4;
   position: absolute;
   z-index: 999999;
+  background-color: #a2a2a236;
 }
 
 /* Error Message */
@@ -72,13 +74,11 @@
 /* Upload Progress Holder */
 .loader {
   height: 5%;
-  margin-top: 10%;
   position: relative;
   background: #8481817a;
   -moz-border-radius: 25px;
   -webkit-border-radius: 25px;
   border-radius: 25px;
-  padding: 2px;
   box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
 }
 

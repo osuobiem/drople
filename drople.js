@@ -3,7 +3,7 @@
  * *************************************************
  */
 {
-  style = document.createElement('link')
+  let style = document.createElement('link')
   style.rel = 'stylesheet'
   style.href = 'drople.css'
 
@@ -16,10 +16,22 @@ let drople = document.getElementById('drople')
 let first = true;
 
 // Upload Mode
-let mode = drople.getAttribute('mode')
+const mode = drople.getAttribute('mode')
 
 // Server Upload URL
-let url = drople.getAttribute('url')
+const url = drople.getAttribute('url')
+
+/**
+ * Create Info P Element
+ ***************************************************
+ */
+{
+  let p = document.createElement('p')
+  p.id = 'drop-msg'
+  p.innerHTML = 'Drop file here OR Click to select'
+  drople.appendChild(p)
+}
+/***************************************************/
 
 /**
  * Create File Input Element
@@ -34,13 +46,13 @@ let url = drople.getAttribute('url')
 
   if (mode === 'single') {
     input.addEventListener('change', e => {
-      upload(e.target.files[0]);
+      render(e.target.files[0]);
     })
   } else {
     input.multiple = true
     input.addEventListener('change', e => {
       [...e.target.files].forEach(f => {
-        upload(f);
+        render(f);
       })
     })
   }
@@ -101,11 +113,13 @@ function render(file) {
   img_parent.appendChild(new_img)
 
   if (first) {
-    drople.innerHTML = ''
+    document.getElementById('drop-msg').hidden = "true"
     first = false
   }
   drople.appendChild(img_parent)
   manip(img_parent)
+
+  upload(file, img_parent)
 }
 
 /**
@@ -140,42 +154,57 @@ function drop(e) {
   e.target.classList.remove('drop-op')
   files = e.dataTransfer.files;
 
-  mode === 'single' ? upload(files[0]) : [...files].forEach(upload)
+  mode === 'single' ? render(files[0]) : [...files].forEach(render)
 }
 
-function upload(file, drop = false) {
-  render(file);
+function upload(file, parent) {
 
-  // let fd = new FormData();
-  // fd.append('file', file);
+  // Create progress status element
+  let progress = document.createElement('div')
+  progress.setAttribute('class', 'loader')
+  let sub_prog = document.createElement('span')
+  sub_prog.setAttribute('style', 'width: 0')
 
-  // let xhr = new XMLHttpRequest();
+  // Create error status element
+  let error = document.createElement('span')
+  error.setAttribute('class', 'status-e')
+  error.innerHTML = '&#10006;'
 
-  // xhr.open('PUT', 'http://localhost:1337/upload-portfile', true);
+  // Create error message element
+  let error_m = document.createElement('span')
+  error_m.setAttribute('class', 'e-message')
 
-  // xhr.upload.addEventListener("loadstart", progress, false);
-  // xhr.upload.addEventListener("progress", progress, false);
-  // xhr.upload.addEventListener("load", progress, false);
-  // xhr.upload.addEventListener("error", error, false);
+  // Create success status element
+  let success = document.createElement('span')
+  success.setAttribute('class', 'status-s')
+  success.innerHTML = '&#10004;'
 
-  // xhr.onreadystatechange = function () {
-  //   if (this.readyState == 4 && this.status == 200) {
-  //     var response = this.responseText;
+  let fd = new FormData();
+  fd.append('file', file);
 
-  //     console.log(response)
-  //   } else if (this.status == 500) {
-  //     console.log('Server Error')
-  //   }
+  let xhr = new XMLHttpRequest();
 
-  // }
+  xhr.open('PUT', url, true);
 
-  // xhr.send(fd);
-}
+  xhr.upload.addEventListener("loadstart", () => {
+    progress.appendChild(sub_prog)
+    parent.prepend(progress)
+  });
+  xhr.upload.addEventListener("progress", e => {
+    prog = Math.round(e.loaded / e.total * 100)
+    sub_prog.setAttribute('style', 'width: ' + prog + '%')
 
-function progress(e) {
-  console.log(Math.round(e.loaded / e.total * 100))
-}
+  });
+  xhr.upload.addEventListener("load", () => {
+    progress.hidden = true
+    parent.prepend(success)
+  });
+  xhr.upload.addEventListener("error", () => {
+    progress.hidden = true
+    error_m.innerHTML = 'Error: Could not upload file'
+    parent.prepend(error_m)
+    parent.prepend(error)
+  });
 
-function error(e) {
-  console.log('Oops! something went wrong');
+  xhr.send(fd);
 }
