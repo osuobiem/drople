@@ -1,3 +1,4 @@
+/* Drople Root */
 #drople {
   background: #f9f9f9;
   margin: 1%;
@@ -9,21 +10,24 @@
   justify-content: center;
 }
 
+/* Image Display */
 .drople-img {
   background-position: center;
   background-size: cover;
   text-align: right;
 }
 
+/* Success Status */
 .status-s {
   color: #2af331a1;
   font-size: 2em;
-  padding: 2px 3px;
+  padding: 2px 4px;
   text-align: center;
   border-radius: 50px;
   border: solid 5px #2af331a1;
 }
 
+/* Error Status */
 .status-e {
   color: #f33131c4;
   font-size: 2em;
@@ -33,8 +37,20 @@
   border: solid 5px #f33131c4;
 }
 
+/* Error Message */
+.e-message {
+  padding: 10px;
+  background: #ffffff82;
+  border-radius: 5px;
+  margin-top: 5%;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* Upload Progress Holder */
 .loader {
   height: 5%;
+  margin-top: 10%;
   position: relative;
   background: #8481817a;
   -moz-border-radius: 25px;
@@ -44,6 +60,7 @@
   box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
 }
 
+/* Upload Progress Bar */
 .loader>span {
   display: block;
   height: 100%;
@@ -54,21 +71,14 @@
   overflow: hidden;
 }
 
-.e-message {
-  padding: 10px;
-  background: #ffffff82;
-  border-radius: 5px;
-  margin-top: 5%;
-  text-align: center;
-  font-size: 12px;
-}
-
-[class*="col-"] {
+/* D Column General Style */
+[class*="d-col-"] {
   padding: 5px;
   border: 1px solid #ffffff;
   margin: 1%;
 }
 
+/* D Columns */
 .d-col-1 {
   width: 8.33%;
 }
