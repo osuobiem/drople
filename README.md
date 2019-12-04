@@ -15,10 +15,12 @@ Without stress you can use drople with just a single line of code.
 ```html
 <div id="drople" d-url="www.server-upload-url.com" d-mode="single"></div>
 ```
-  <strong>d-mode</strong> can be <strong>'single'</strong> for 1 file upload
-  or <strong>'multiple'</strong> for multiple file uploads
+| Attribute      | Description                                                        |
+| :---           |                                                               ---: |
+| d-url          | This is the server-side file upload URL. It is required            |
+| d-mode         | This specifies the file upload type. It can either be 'single' for | 
+|                | single file uploads, or 'multiple' for multiple file uploads.      |
 </ol>
 
 
 There you have it, simply painless.
-
