@@ -1,4 +1,4 @@
-# droplejs
+# drople
 DropleJS is an easy Javascript open source library that provides drag'n'drop file uploads with image previews.
 Without stress you can use drople with just a single line of code.
 
@@ -15,9 +15,10 @@ Without stress you can use drople with just a single line of code.
 ```html
 <div id="drople" d-url="www.server-upload-url.com" d-mode="single"></div>
 ```
-  d-mode can be single for 1 file upload
-  and multiple for multiple file uploads
+  <strong>d-mode</strong> can be <strong>'single'</strong> for 1 file upload
+  or <strong>'multiple'</strong> for multiple file uploads
 </ol>
+
 
 There you have it, simply painless.
 
