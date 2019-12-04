@@ -17,7 +17,7 @@ Without stress you can use drople with just a single line of code.
 ```
 | Attribute      | Description                                                        |
 | :---           | :---                                                               |
-| d-url          | This is the server-side file upload URL. It is required            |
+| d-url          | This is the server-side file upload URL.                           |
 | d-mode         | This specifies the file upload type. It can either be 'single' for | 
 |                | single file uploads, or 'multiple' for multiple file uploads.      |
 </ol>
