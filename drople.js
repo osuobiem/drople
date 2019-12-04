@@ -100,13 +100,27 @@ function manip(img) {
  * @param {FileObject} file 
  */
 function render(file) {
+  type = file.type;
+  type1 = type.split('/')[0]
+  type2 = type.split('/')[1]
+
   let img_parent = document.createElement('div')
   let new_img = document.createElement('img')
 
-  let reader = new FileReader()
-  reader.readAsDataURL(file)
-  reader.onload = () => {
-    new_img.src = reader.result
+  if (type1 == 'application' && type2 == 'pdf') {
+    new_img.src = 'placeholders/pdf.png'
+  } else if (type1 == 'image') {
+    let reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => {
+      new_img.src = reader.result
+    }
+  } else if (type1 == 'video') {
+    new_img.src = 'placeholders/video.png'
+  } else if (type1 == 'audio') {
+    new_img.src = 'placeholders/audio.png'
+  } else {
+    new_img.src = 'placeholders/file.jpg'
   }
 
   img_parent.classList.add('drople-img')
@@ -157,6 +171,12 @@ function drop(e) {
   mode === 'single' ? render(files[0]) : [...files].forEach(render)
 }
 
+/**
+ * Upload file to Server
+ * 
+ * @param {FileObject} file 
+ * @param {HTML Element} parent 
+ */
 function upload(file, parent) {
 
   // Create progress status element
@@ -184,7 +204,7 @@ function upload(file, parent) {
 
   let xhr = new XMLHttpRequest();
 
-  xhr.open('PUT', url, true);
+  xhr.open('POST', url, true);
 
   xhr.upload.addEventListener("loadstart", () => {
     progress.appendChild(sub_prog)
@@ -195,10 +215,20 @@ function upload(file, parent) {
     sub_prog.setAttribute('style', 'width: ' + prog + '%')
 
   });
-  xhr.upload.addEventListener("load", () => {
-    progress.hidden = true
-    parent.prepend(success)
-  });
+  xhr.upload.addEventListener("loadend", () => {
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        progress.hidden = true
+        parent.prepend(success)
+      }
+      if (xhr.status == 0) {
+        progress.hidden = true
+        error_m.innerHTML = 'Error: Could not upload file'
+        parent.prepend(error_m)
+        parent.prepend(error)
+      }
+    }
+  })
   xhr.upload.addEventListener("error", () => {
     progress.hidden = true
     error_m.innerHTML = 'Error: Could not upload file'
