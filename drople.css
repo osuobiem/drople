@@ -89,7 +89,7 @@
 }
 
 /* Upload Progress Holder */
-.loader {
+.d-loader {
   height: 5%;
   position: relative;
   background: #8481817a;
@@ -100,7 +100,7 @@
 }
 
 /* Upload Progress Bar */
-.loader>span {
+.d-loader>span {
   display: block;
   height: 100%;
   border-radius: 8px;

@@ -202,7 +202,7 @@ function upload(file, parent) {
 
   // Create progress status element
   let progress = document.createElement('div')
-  progress.setAttribute('class', 'loader')
+  progress.setAttribute('class', 'd-loader')
   let sub_prog = document.createElement('span')
   sub_prog.setAttribute('style', 'width: 0')
 
