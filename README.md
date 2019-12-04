@@ -1,5 +1,5 @@
 # drople
-DropleJS is an easy Javascript open source library that provides drag'n'drop file uploads with image previews.
+DropleJS is an easy-to-use Javascript open source library that provides drag'n'drop file uploads with image previews.
 Without stress you can use drople with just a single line of code.
 
 # usage
