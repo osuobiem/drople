@@ -1,3 +1,18 @@
+/*
+ * drople.css
+ * 
+ * DropleJS is a JavaScript open source library that provides 
+ * drag'n'drop file uploads with image previews.
+ * 
+ * Main stylesheet
+ * 
+ * @package DropleJS
+ * @version 1.0.0
+ * @author  Gabriel Osuobiem <osuobiem@gmail.com>
+ * @link https://github.com/osuobiem
+ * @link https://www.linkedin.com/in/gabriel-osuobiem-b22577176/
+ */
+
 /* Drople Root */
 #drople {
   background: #d4cece45;
@@ -28,6 +43,7 @@
 /* Image Display */
 .drople-img {
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .drople-img>img {

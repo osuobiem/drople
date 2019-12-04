@@ -1,11 +1,32 @@
 /**
+ * drople.js
+ * 
+ * DropleJS is a JavaScript open source library that provides 
+ * drag'n'drop file uploads with image previews.
+ * 
+ * Main javascript file
+ * 
+ * @package DropleJS
+ * @version 1.0.1
+ * @author  Gabriel Osuobiem <osuobiem@gmail.com>
+ * @link https://github.com/osuobiem
+ * @link https://www.linkedin.com/in/gabriel-osuobiem-b22577176/
+ */
+
+/**
  * Include drople.css
  * *************************************************
  */
 {
+  scripts = document.getElementsByTagName("script"),
+    src = scripts[scripts.length - 1].src;
+  src = src.split('/')
+  src.pop()
+  src = src.join('/')
+
   let style = document.createElement('link')
   style.rel = 'stylesheet'
-  style.href = 'drople.css'
+  style.href = src + '/drople.css'
 
   document.head.appendChild(style)
 }
