@@ -7,7 +7,7 @@
  * Main stylesheet
  * 
  * @package DropleJS
- * @version 1.0.0
+ * @version 1.0.1
  * @author  Gabriel Osuobiem <osuobiem@gmail.com>
  * @link https://github.com/osuobiem
  * @link https://www.linkedin.com/in/gabriel-osuobiem-b22577176/
@@ -53,8 +53,8 @@
 /* Success Status */
 .status-s {
   color: #2af331a1;
-  font-size: 2em;
-  padding: 1px 6px;
+  font-size: 1em;
+  padding: 1px 3px;
   text-align: center;
   border-radius: 50px;
   border: solid 5px #2af331a1;
@@ -66,8 +66,8 @@
 /* Error Status */
 .status-e {
   color: #f33131c4;
-  font-size: 2em;
-  padding: 1px 12px;
+  font-size: 1em;
+  padding: 1px 7px;
   text-align: center;
   border-radius: 50px;
   border: solid 5px #f33131c4;
@@ -85,6 +85,7 @@
   text-align: center;
   font-size: 12px;
   position: absolute;
+  width: inherit;
 }
 
 /* Upload Progress Holder */

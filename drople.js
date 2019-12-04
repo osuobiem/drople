@@ -37,10 +37,10 @@ let drople = document.getElementById('drople')
 let first = true;
 
 // Upload Mode
-const mode = drople.getAttribute('mode')
+const mode = drople.getAttribute('d-mode')
 
 // Server Upload URL
-const url = drople.getAttribute('url')
+const url = drople.getAttribute('d-url')
 
 /**
  * Create Info P Element
